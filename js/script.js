@@ -236,7 +236,24 @@ window.addEventListener('DOMContentLoaded', () => {
             request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
             const formData = new FormData(form);
 
-            const object = {};
+            fetch('server.php', {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: formData
+            }).then(data => data.text())
+                .then(data => {
+                    console.log(data);
+                    showThanksModal(message.success);
+                    statusMessage.remove();
+                }).catch(() => {
+                    showThanksModal(message.failure);
+                }).finally(() => {
+                    form.reset();
+                })
+
+            /*const object = {};
             formData.forEach(function (value, key) {
                 object[key] = value;
             });
@@ -254,7 +271,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 } else {
                     showThanksModal(message.failure);
                 }
-            });
+            });*/
         });
     }
 

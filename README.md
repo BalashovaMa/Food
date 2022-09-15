@@ -1,1 +1,1 @@
-https://balashovama.github.io/Food/
+https://BalashovaMa.github.io/Food/index.html
